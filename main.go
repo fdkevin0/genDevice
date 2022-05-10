@@ -93,9 +93,12 @@ func GenerateImei() string {
 			}
 		}
 		sum += toAdd
-		fmt.Printf("%d", digits[i])
 	}
 	var ctrlDigit int = (sum * 9) % 10
 	digits[IMEI_BASE_DIGITS_COUNT] = ctrlDigit
-	return strconv.Itoa(ctrlDigit)
+	imei := 0
+	for _, v := range digits {
+		imei = imei*10 + v
+	}
+	return strconv.Itoa(imei)
 }
